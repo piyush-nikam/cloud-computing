@@ -13,8 +13,8 @@ repositories {
 }
 
 bootJar {
-    baseName = 'gs-accessing-data-mysql'
-    version =  '0.1.0'
+    baseName = 'foodAppBackend'
+    version =  '1.0'
 }
 
 dependencies {
@@ -26,5 +26,8 @@ dependencies {
     // Use MySQL Connector-J
     compile 'mysql:mysql-connector-java'
     
+    //Cataline error
+    compile 'org.springframework.boot:spring-boot-starter-tomcat'
+    compile 'org.springframework:spring-jdbc:4.2.5.RELEASE'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
