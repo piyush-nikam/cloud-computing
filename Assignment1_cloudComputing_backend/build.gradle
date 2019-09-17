@@ -5,16 +5,11 @@ plugins {
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+version = '1'
 sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
-}
-
-bootJar {
-    baseName = 'foodAppBackend'
-    version =  '1.0'
 }
 
 dependencies {
@@ -27,7 +22,7 @@ dependencies {
     compile 'mysql:mysql-connector-java'
     
     //Cataline error
-    compile 'org.springframework.boot:spring-boot-starter-tomcat'
-    compile 'org.springframework:spring-jdbc:4.2.5.RELEASE'
+    //compile 'org.springframework.boot:spring-boot-starter-tomcat'
+    //compile 'org.springframework:spring-jdbc:4.2.5.RELEASE'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
