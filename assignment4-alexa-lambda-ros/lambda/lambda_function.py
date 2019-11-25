@@ -59,7 +59,7 @@ def get_test_response(intent):
     session_attributes = {}
     card_title = "Test"
     move_direction = str(intent['slots']['movement']['value'])
-    speech_output = "Your bot will start moving: " + move_direction
+    speech_output = move_direction
     
     #Pubnub publish
     pubnub.publish()\
@@ -67,7 +67,7 @@ def get_test_response(intent):
     .message({"sender": pnconfig.uuid, "content": move_direction})\
     .pn_async(my_publish_callback)
 
-    reprompt_text = "You never responded to the first test message. Sending another one."
+    reprompt_text = ""
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
