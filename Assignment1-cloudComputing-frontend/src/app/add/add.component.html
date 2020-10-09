@@ -1,0 +1,12 @@
+<div class="add">
+    <h1>Your Order Please</h1>
+   
+    <div>
+            <legend>What food would you like to order?</legend>
+            <p><label> Veg/NonVeg <input type="text"  [(ngModel)]="type"/>  </label></p>
+            <p><label> Pizza/Burger  <input type="text" [(ngModel)]="food"/> </label></p>
+            <button (click)="addData()">Submit</button>
+</div>
+    <textarea rows="10" cols="80" [(ngModel)]="orders"></textarea>
+    <button (click)="fetchOrders()">Fetch Orders</button>
+</div>

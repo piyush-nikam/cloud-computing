@@ -1,0 +1,10 @@
+<div class="login">
+    <h1>Login</h1>
+    <!-- <form method="post"> -->
+    <div>
+        <input type="text"  placeholder="Username" required="required" [(ngModel)]="userName"/>
+        <input type="password" placeholder="Password" required="required" [(ngModel)]="password"/>
+        <span *ngIf="InValid">Not Registered!</span>
+        <button class="btn btn-primary btn-block btn-large" (click)="login()">Login</button>
+    </div>
+</div>
