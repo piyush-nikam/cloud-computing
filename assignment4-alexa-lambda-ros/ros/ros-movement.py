@@ -1,8 +1,9 @@
 from pubnub.callbacks import SubscribeCallback
-from pubnub.enums import PNStatusCategory
+from pubnub.enums import PNStatusCategory,PNReconnectionPolicy
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
 from pprint import pprint
+import threading
 
 class MySubscribeCallback(SubscribeCallback):
     def status(self, pubnub, status):
@@ -13,15 +14,20 @@ class MySubscribeCallback(SubscribeCallback):
 
     def message(self, pubnub, message):
         direction = message.__dict__['message']['content']
-        pprint('Bot is moving: ', direction)
+        print('Bot is moving: ', direction)
+        global stop_threads = True
         move_bot(direction)
 
 
 def move_bot(direction):
+    #threading.Thread(target = fun1, args = direction)
+    global stop_threads = False
     if(direction=='left'):
-        move_bot_left()
+        t1 = threading.Thread(target = move_bot_left(), args = direction)
+        t1.start()
     elif(direction=='right'):
-        move_bot_right()
+        t2 = threading.Thread(target = move_bot_right(), args = direction)
+        t2.start()
     elif(direction=='forward'):
         move_bot_forward()
     elif(direction=='backward'):
@@ -30,24 +36,34 @@ def move_bot(direction):
         move_bot_stop()
 
 def move_bot_left():
+    white(True):
+        print('going left with stop_threads', stop_threads)
+        global stop_threads 
+        if stop_threads: 
+            break
     return
 
 def move_bot_right():
+    print('going right')
     return
 
 def move_bot_forward():
+    print('going forward')
     return
 
 def move_bot_backward():
+    print('going backward')
     return
 
 def bot_stop():
+    print('stopping')
     return
 
 
 pnconfig = PNConfiguration()
 pnconfig.subscribe_key = "sub-c-918b08b4-0c33-11ea-a783-52dd774e953e"
 pnconfig.publish_key = "pub-c-25f3d76c-b9ae-414c-951e-adcf71ef4335"
+pnconfig.reconnect_policy = PNReconnectionPolicy.LINEAR
 
 pubnub = PubNub(pnconfig)
 
